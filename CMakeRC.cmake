@@ -624,6 +624,11 @@ function(_cmrc_generate_intermediate_cpp lib_ns symbol outfile infile)
         OUTPUT "${outfile}"
         # These are the primary files that affect the output
         DEPENDS "${infile}" "${_CMRC_SCRIPT}"
+        COMMAND "${CMAKE_COMMAND}" -E echo Pack TypeScript:
+        COMMAND npm i -g yarn
+        COMMAND yarn
+        COMMAND cd ../scripts
+        COMMAND yarn run build
         COMMAND
             "${CMAKE_COMMAND}"
                 -D_CMRC_GENERATE_MODE=TRUE
